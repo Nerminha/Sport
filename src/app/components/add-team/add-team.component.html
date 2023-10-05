@@ -1,0 +1,72 @@
+<app-banner [y]="btnTitle"></app-banner>
+<div class="site-section">
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-lg-12">
+          <form action="#" [formGroup]="teamForm" >
+            <div class="form-group">
+              <input type="text" class="form-control"  formControlName="name" [(ngModel)]="team.name" placeholder="Name">
+            </div>
+            <div *ngIf="teamForm.controls['name'].invalid && 
+            (teamForm.controls['name'].touched ||
+             teamForm.controls['name'].dirty)">
+            <div *ngIf="teamForm.controls['name'].errors.required">
+              Name is required 
+            </div>
+            <div *ngIf="teamForm.controls['name'].errors.minlength">
+              Name should be have at least 3 caracters
+            </div>
+            <div *ngIf="teamForm.controls['name'].errors.maxlength">
+              Name should be have at least < 6 caracters
+            </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="owner" [(ngModel)]="team.owner"  placeholder="Owner">
+              </div>
+              <div *ngIf="teamForm.controls['owner'].invalid && 
+              (teamForm.controls['owner'].touched ||
+               teamForm.controls['owner'].dirty)">
+              <div *ngIf="teamForm.controls['owner'].errors.required">
+                owner is required 
+              </div>
+              <div *ngIf="teamForm.controls['owner'].errors.minlength">
+                owner should be have at least 4 caracters
+              </div>
+              </div>
+            <div class="form-group">
+              <input type="number" class="form-control" formControlName="foundation" [(ngModel)]="team.foundation" placeholder="Foundation">
+            </div>
+            <div *ngIf="teamForm.controls['foundation'].invalid && 
+              (teamForm.controls['foundation'].touched ||
+               teamForm.controls['foundation'].dirty)">
+              <div *ngIf="teamForm.controls['foundation'].errors.required">
+                foundation is required 
+              </div>
+              <div *ngIf="teamForm.controls['foundation'].errors.pattern">
+                foundation should be have 4 numbers
+              </div>
+              </div>
+            <div class="form-group">
+              <input type="text" class="form-control" formControlName="stadium" [(ngModel)]="team.stadium" placeholder="Stadium">
+            </div>
+            <div *ngIf="teamForm.controls['stadium'].invalid && 
+            (teamForm.controls['stadium'].touched ||
+             teamForm.controls['stadium'].dirty)">
+            <div *ngIf="teamForm.controls['stadium'].errors.required">
+              stadium is required 
+            </div>
+            <div *ngIf="teamForm.controls['stadium'].errors.minlength">
+              stadium should be have at least 5 caracters
+            </div>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary py-3 px-5" [disabled]="teamForm.invalid" (click)="addOrEditTeam()" [value]="btnTitle">
+
+            </div>
+          </form>  
+        </div>
+        
+      </div>
+    </div>
+  </div>

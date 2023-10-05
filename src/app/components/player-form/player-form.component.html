@@ -1,0 +1,106 @@
+<app-banner [y]="btnTitle"></app-banner>
+<div class="site-section">
+    <div class="container">
+      <div class="row">
+      
+        <div class="col-lg-12">
+          <form [formGroup]="playerForm">
+            <div class="form-group">
+                
+              <input type="text" formControlName="name" [(ngModel)]="player.name" class="form-control" placeholder="Name">
+            </div>
+            <div
+            *ngIf="
+              playerForm.controls['name'].invalid &&
+              (playerForm.controls['name'].dirty ||
+                playerForm.controls['name'].touched)
+            "
+          >
+          <div *ngIf="playerForm.controls['name'].errors.required">
+            Name of player is required
+          </div>
+          <div *ngIf="playerForm.controls['name'].errors.minlength">
+            Name of player should have at least 4 carac
+          </div>
+
+            
+          </div>
+            <div class="form-group">
+                <input type="number" formControlName="age" [(ngModel)]="player.age" class="form-control" placeholder="Age">
+              </div>
+              <div
+              *ngIf="
+                playerForm.controls['age'].invalid &&
+                (playerForm.controls['age'].dirty ||
+                  playerForm.controls['age'].touched)
+              "
+            >
+            <div *ngIf="playerForm.controls['age'].errors.required">
+              Age is required
+            </div>
+            <div *ngIf="playerForm.controls['age'].errors.pattern">
+              Age should have at least 2 number
+            </div>
+            </div>
+            <div class="form-group">
+              <input type="number" formControlName="number" [(ngModel)]="player.number" class="form-control" placeholder="Number">
+            </div>
+            <div
+            *ngIf="
+              playerForm.controls['number'].invalid &&
+              (playerForm.controls['number'].dirty ||
+                playerForm.controls['number'].touched)
+            "
+          >
+          <div *ngIf="playerForm.controls['number'].errors.required">
+            Number is required
+          </div>
+          <div *ngIf="playerForm.controls['number'].errors.min">
+            Number should be > 0
+          </div>
+          </div>
+            <div class="form-group">
+              <input type="text" formControlName="position" [(ngModel)]="player.position" class="form-control" placeholder="Position">
+            </div>
+            <div
+            *ngIf="
+              playerForm.controls['position'].invalid &&
+              (playerForm.controls['position'].dirty ||
+                playerForm.controls['position'].touched)
+            "
+          >
+          <div *ngIf="playerForm.controls['position'].errors.required">
+            Position is required
+          </div>
+          <div *ngIf="playerForm.controls['position'].errors.minlength">
+            Position should have at least 6 carac
+          </div>
+
+            
+          </div>
+           
+            <div class="form-group">
+              <select name="tId"  class="form-control" (change)="selectTeamId($event)">
+                <option *ngFor="let team of teamsTab" style="color: black;" [value]="team._id">{{team.name}}</option>
+              </select>
+            </div>
+            <div class="form-group" style="display: none;">
+              <input type="file" class="form-control" #filePicker (change)='onImageSelected($event)'>
+          </div>
+          <div class="text-center">
+              <button class="btn btn-success" (click)="filePicker.click()">Select your photo
+              </button>
+              <div class="mt-4 mb-4">
+                  <img [src]="imagePreview" alt="" width="200PX">
+              </div>
+
+          </div>
+            <div class="form-group">
+              <input type="submit" (click)="addOrEditPlayer()" class="btn btn-primary py-3 px-5" [disabled]="playerForm.invalid" [value]="btnTitle">
+            </div>
+          </form>  
+        </div>
+        
+      </div>
+    </div>
+</div>

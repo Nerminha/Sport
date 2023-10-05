@@ -1,0 +1,6 @@
+<app-banner [y]="title"></app-banner>
+<div *ngFor="let match of matches">
+    <div class="site-section">
+        <app-result [result]="match"(newMatches)="updateMatches($event)"></app-result>
+    </div>
+</div>
